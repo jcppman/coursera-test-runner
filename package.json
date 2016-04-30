@@ -1,9 +1,11 @@
 {
-  "name": "run-test",
+  "name": "coursera-test-runner",
   "version": "1.0.0",
   "description": "Coursera Algorithm courses test cases runner",
   "main": "index.js",
-  "bin": "./index.js",
+  "bin": {
+    "run-test": "./index.js"
+  },
   "author": "Chriest Yu <jcppman@gmail.com>",
   "license": "MIT",
   "repository": {
