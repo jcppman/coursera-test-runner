@@ -1,11 +1,15 @@
 {
   "name": "run-test",
   "version": "1.0.0",
-  "description": "Coursera Algorithm courses testsuit helper",
+  "description": "Coursera Algorithm courses test cases runner",
   "main": "index.js",
   "bin": "./index.js",
   "author": "Chriest Yu <jcppman@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcppman/coursera-test-runner.git"
+  },
   "dependencies": {
     "async": "^1.5.2",
     "glob": "^7.0.3"
