@@ -1,0 +1,13 @@
+{
+  "name": "run-test",
+  "version": "1.0.0",
+  "description": "Coursera Algorithm courses testsuit helper",
+  "main": "index.js",
+  "bin": "./index.js",
+  "author": "Chriest Yu <jcppman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.5.2",
+    "glob": "^7.0.3"
+  }
+}
