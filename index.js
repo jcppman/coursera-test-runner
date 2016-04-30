@@ -7,6 +7,10 @@ var fs = require('fs')
 var glob = require('glob')
 var async = require('async')
 
+if (!process.argv[2] || !process.argv[3]) {
+  console.log('USAGE: run-test SCRIPT TEST_FOLDER')
+  process.exit(1)
+}
 var script = path.resolve(process.argv[2])
 var folder = path.resolve(process.argv[3])
 
