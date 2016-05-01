@@ -35,13 +35,13 @@ async.eachSeries(files, function(file, done){
     silent: true
   })
   var result = ''
-  var answer = fs.readFileSync(file + '.a').toString().trim().replace('\r', '')
+  var answer = fs.readFileSync(file + '.a').toString().trim().replace(/\r/g, '')
   fs.createReadStream(file).pipe(child.stdin)
   child.stdout.on('data', function(data){
     result += data.toString()
   })
   child.stdout.on('end', function(){
-    result = result.trim().replace('\r', '')
+    result = result.trim().replace(/\r/g, '')
     var pass = result === answer
     if (pass) {
       console.log('Test case', path.basename(file), '[Passed]')
