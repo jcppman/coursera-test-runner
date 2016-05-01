@@ -47,8 +47,8 @@ async.eachSeries(files, function(file, done){
       console.log('Test case', path.basename(file), '[Passed]')
     } else {
       console.log('Test case', path.basename(file), '[Failed]')
-      console.log('Expected:\n', answer)
-      console.log('Actual:\n', result)
+      console.log('Expected:\n' + answer)
+      console.log('Actual:\n' + result)
     }
     done(pass ? null : path.basename(file))
   })
