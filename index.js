@@ -1,55 +1,22 @@
 #!/usr/bin/env node
-
 var path = require('path')
-var fork = require('child_process').fork
-var fs = require('fs')
 
-var glob = require('glob')
-var async = require('async')
-
-if (!process.argv[2] || !process.argv[3]) {
-  console.log('USAGE: run-test SCRIPT TEST_FOLDER')
+if (process.argv.length < 4) {
+  console.log('USAGE:')
+  console.log('  run-test SCRIPT TEST_FOLDER')
+  console.log('  run-test SCRIPT1 SCRIPT2 TEST_GENERATOR')
   process.exit(1)
 }
-var script = path.resolve(process.argv[2])
-var folder = path.resolve(process.argv[3])
 
-if (!fs.statSync(script).isFile()) {
-  console.error(
-    'script not found, please check your path\n' +
-    'script', script
+if (process.argv.length === 4) {
+  require('./folder-test')(
+    path.resolve(process.argv[2]),
+    path.resolve(process.argv[3])
+  )
+} else {
+  require('./stress-test')(
+    path.resolve(process.argv[2]),
+    path.resolve(process.argv[3]),
+    require(path.join(process.cwd(), process.argv[4]))
   )
 }
-
-var files = glob.sync(path.join(folder, '+([0-9])'))
-
-if (files.length === 0) {
-  console.error(
-    'files not found, please check your path\n' +
-    'folder', folder
-  )
-}
-
-async.eachSeries(files, function(file, done){
-  var child = fork(script, [], {
-    silent: true
-  })
-  var result = ''
-  var answer = fs.readFileSync(file + '.a').toString().trim().replace(/\r/g, '')
-  fs.createReadStream(file).pipe(child.stdin)
-  child.stdout.on('data', function(data){
-    result += data.toString()
-  })
-  child.stdout.on('end', function(){
-    result = result.trim().replace(/\r/g, '')
-    var pass = result === answer
-    if (pass) {
-      console.log('Test case', path.basename(file), '[Passed]')
-    } else {
-      console.log('Test case', path.basename(file), '[Failed]')
-      console.log('Expected:\n' + answer)
-      console.log('Actual:\n' + result)
-    }
-    done(pass ? null : path.basename(file))
-  })
-})
