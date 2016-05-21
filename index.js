@@ -4,7 +4,7 @@ var path = require('path')
 if (process.argv.length < 4) {
   console.log('USAGE:')
   console.log('  run-test SCRIPT TEST_FOLDER')
-  console.log('  run-test SCRIPT1 SCRIPT2 TEST_GENERATOR')
+  console.log('  run-test SCRIPT1 SCRIPT2 TEST_GENERATOR [PRINT_TESTCASE]')
   process.exit(1)
 }
 
