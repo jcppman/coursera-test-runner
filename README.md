@@ -1,9 +1,9 @@
-# test-runner
+# oj-test-runner
 JS test cases runner for OJ things.
 
 ## Install
 
-- `npm install -g batch-test-runner`
+- `npm install -g oj-test-runner`
 
 ## Usage
 
