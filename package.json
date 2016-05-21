@@ -1,7 +1,7 @@
 {
-  "name": "coursera-test-runner",
-  "version": "1.2.0",
-  "description": "Coursera Algorithm courses test cases runner",
+  "name": "oj-test-runner",
+  "version": "1.2.1",
+  "description": "OJ test cases runner",
   "main": "index.js",
   "bin": {
     "run-test": "./index.js"
